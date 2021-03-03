@@ -25,6 +25,7 @@ class Board extends React.Component {
                                         <Tile 
                                             tile={tile}
                                             updateGame={this.props.updateGame}
+                                            key={`${tile.pos[0]}-${tile.pos[1]}`}
                                         />
                                     )
                                 })}
