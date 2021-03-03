@@ -5,7 +5,7 @@ import Board from './board.jsx'
 const Root = (props) => {
     return (
         <div>
-            <div><Board/></div>
+            {/* <div><Board/></div> */}
             <div><Game/></div>
         </div>
 
