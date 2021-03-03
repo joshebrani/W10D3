@@ -9,21 +9,38 @@ class Tile extends React.Component{
     }
 
 
+    handleClick(e){
+        if (e.currentTarget.explored === false){
+            e.currentTarget.explored = true;
+        }else if (!e.currentTarget.flagged && e.altKey){
+            e.currentTarget.flagged  = true;
+        } else if (e.currentTarget.flagged && e.altKey) {
+            e.currentTarget.flagged = false;
+        }
+        //call the setState
+    }
+
     render(){
         let symbol = "";
-        const thisTile = this.state.tile
+        let mine ;
+        const thisTile = this.state.tile;
         if (thisTile.explored) {
             let bc = thisTile.adjacentBombCount();
-            symbol = (bc === 0) ? "" : bc.toString()
+            symbol = (bc === 0) ? "_" : bc.toString();
+            mine= 'explored';
         } else if (!thisTile.explored) {
+            symbol  = "_";
+            mine= 'unexplored';
             
         } else if (thisTile.bombed) {
-            symbol = '💣'
+            symbol = '💣';
+            mine=  'bombed';
         } else if (thisTile.flagged) {
-            symbol = '🚩'
+            symbol = '🚩';
+            mine = 'flagged';
         }
         return (
-            <div>T</div>
+            <div className ={`tile ${mine}`}>{symbol}</div>
         )    
     }
 }

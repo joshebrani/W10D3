@@ -4,3 +4,22 @@
     align-items: center;
     justify-content: center;
 }
+
+.board{
+    border: 5px solid red;
+    width: min-content;
+    padding-inline-start: 0px;
+    margin: auto;
+}
+
+
+
+.tile{
+    background-color: lightgrey;
+    /* border: 1px solid black; */
+    width: 30px;
+    height: 30px;
+    border-style: outset;
+    font-weight: bold;
+}
+

@@ -15,7 +15,7 @@ class Board extends React.Component {
         return(
             <>
                 <h1>This is the Board</h1>
-                <ul>{this.props.board.grid.map((row,idx)=>{
+                <ul className = 'board'>{this.props.board.grid.map((row,idx)=>{
                     return (
                         <div key={idx} >
                             {/* {idx} */}
