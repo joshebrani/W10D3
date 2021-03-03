@@ -122,7 +122,7 @@
           </div>
 
           <div class="submit">
-            <button>Post To Wall</button>
+            <button class="js-modal-open">Post To Wall</button>
             <span class="button-alternative">or <strong>Cancel</strong></span>
           </div>
 
@@ -231,52 +231,51 @@
     </ul>
 
   </footer>
-
-  <div class="modal is-open">
-    <!-- <section class="modal-screen">
-
-    </section> -->
-
   
-    <form class ='modal-form'>
-      <span class ='js-modal-close'>x</span>
-      <h1>Welcome</h1>
-      <p>Please sign in to continue</p>
-      <div class = 'input'>
-        <label for="Email">Email</label>
-        <input type="text" id="Email">
-      </div>
-      
-      <div class = 'input'>
-        <label for="Password">Password</label>
-        <input type="password" id="Password">
-      </div>
-      
-      <div class = 'submit'>
-        <button id="sign-in">Sign In</button>
-        <p> or </p>
-        <button id="cancel">Cancel</button>
-      </div>
-      
-    </form>
+  <div class="modal is-open">
+    <section class="modal-screen">
+    </section>
+      <form class ='modal-form'>
+        <span class ='js-modal-close'>&times</span>
+        <h1>Welcome</h1>
+        <p>Please sign in to continue</p>
+        <div class = 'input'>
+          <label for="Email">Email</label>
+          <input type="text" id="Email">
+        </div>
+        
+        <div class = 'input'>
+          <label for="Password">Password</label>
+          <input type="password" id="Password">
+        </div>
+        
+        <div class = 'submit'>
+          <button id="sign-in">Sign In</button>
+          or
+          <button id="cancel" class="js-modal-close">Cancel</button>
+        </div>
+        
+      </form>
   
   </div>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script>
+      $(function () {
+
+        $("body").on("click", ".js-modal-open", function (event) {
+          event.preventDefault();
+          $(".modal").addClass("is-open");
+        });
+
+        $("body").on("click", ".js-modal-close", function (event) {
+          event.preventDefault();
+          $(".modal").removeClass("is-open");
+        });
+
+      });
+    </script>
+
 </body>
-<script src="../shared/js/jquery.js"></script>
-<script>
-  $(function () {
-
-    $("body").on("click", ".js-modal-open", function (event) {
-      event.preventDefault();
-      $(".modal").addClass("is-open");
-    });
-
-    $("body").on("click", ".js-modal-close", function (event) {
-      event.preventDefault();
-      $(".modal").removeClass("is-open");
-    });
-
-  });
-</script>
 </html>
