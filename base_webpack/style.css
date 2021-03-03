@@ -21,5 +21,21 @@
     height: 30px;
     border-style: outset;
     font-weight: bold;
+    text-align: center;
+
+}
+
+.explored {
+    border-style: inset;
+    background-color: rgb(193, 226, 185);
+}
+
+.bombed {
+    border-style: inset;
+    background-color: red;
+}
+
+.flagged {
+    background-color: gold;
 }
 

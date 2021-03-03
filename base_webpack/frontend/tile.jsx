@@ -6,16 +6,26 @@ class Tile extends React.Component{
         super();
         this.updateGame = props.updateGame
         this.state = {tile: props.tile}
+        this.handleClick = this.handleClick.bind(this)
     }
 
 
     handleClick(e){
-        if (e.currentTarget.explored === false){
-            e.currentTarget.explored = true;
-        }else if (!e.currentTarget.flagged && e.altKey){
-            e.currentTarget.flagged  = true;
-        } else if (e.currentTarget.flagged && e.altKey) {
-            e.currentTarget.flagged = false;
+        console.log('hola')
+        let id = e.currentTarget.id
+        let pos = id.split("-").map((s) => {
+            return parseInt(s)
+        }) 
+        let ctile = this.state.tile.board.grid[pos[0]][pos[1]]
+        if (ctile.explored === false){
+            ctile.explored = true;
+            this.setState ({
+                tile: ctile
+            })
+        }else if (!ctile.flagged && e.altKey){
+            ctile.flagged  = true;
+        } else if (ctile.flagged && e.altKey) {
+            ctile.flagged = false;
         }
         //call the setState
     }
@@ -24,23 +34,24 @@ class Tile extends React.Component{
         let symbol = "";
         let mine ;
         const thisTile = this.state.tile;
-        if (thisTile.explored) {
-            let bc = thisTile.adjacentBombCount();
-            symbol = (bc === 0) ? "_" : bc.toString();
-            mine= 'explored';
-        } else if (!thisTile.explored) {
-            symbol  = "_";
-            mine= 'unexplored';
-            
-        } else if (thisTile.bombed) {
+        // thisTile.explored = true;
+        if (thisTile.bombed && thisTile.explored) {
             symbol = '💣';
             mine=  'bombed';
+        }else if (thisTile.explored) {
+            let bc = thisTile.adjacentBombCount();
+            symbol = (bc === 0) ? "__" : bc.toString();
+            mine= 'explored'; 
         } else if (thisTile.flagged) {
             symbol = '🚩';
             mine = 'flagged';
+        } else if (!thisTile.explored) {
+            symbol  = "-";
+            mine= 'unexplored';
         }
         return (
-            <div className ={`tile ${mine}`}>{symbol}</div>
+            <div id={`${thisTile.pos[0]}-${thisTile.pos[1]}`}
+ onClick = {this.handleClick} className ={`tile ${mine}`}>{symbol}</div>
         )    
     }
 }
