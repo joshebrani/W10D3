@@ -11,23 +11,30 @@ class Tile extends React.Component{
 
 
     handleClick(e){
-        console.log('hola')
         let id = e.currentTarget.id
         let pos = id.split("-").map((s) => {
             return parseInt(s)
         }) 
         let ctile = this.state.tile.board.grid[pos[0]][pos[1]]
-        if (ctile.explored === false){
-            ctile.explored = true;
-            this.setState ({
-                tile: ctile
-            })
-        }else if (!ctile.flagged && e.altKey){
-            ctile.flagged  = true;
-        } else if (ctile.flagged && e.altKey) {
-            ctile.flagged = false;
-        }
+        if (e.altKey){
+            ctile.toggleFlag();
+
+        }else{
+            ctile.explore();
+
+        } 
+        // else if (ctile.flagged && e.altKey) {
+        //     ctile.flagged = false;
+        // }else if (ctile.explored === false){
+        //     ctile.explored = true;
+        //     this.setState ({
+        //         tile: ctile
+        //     })
+        // }
         //call the setState
+        this.setState({
+            tile: ctile
+        })
     }
 
     render(){
